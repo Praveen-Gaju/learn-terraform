@@ -1,6 +1,13 @@
+#Using data source for creating ami image id
+data "aws_ami" "ami" {
+  most_recent      = true
+  name_regex       = "Centos-8-DevOps-Practice"
+  owners           = ["973714476881"]
+}
+
 #AWS ec2 servers
 resource "aws_instance" "frontend" {
-  ami = "ami-0089b8e98cd95257d"
+  ami = data.aws_ami.ami.image_id     #used data block as reference for image id  to create ec2 instance
   instance_type = "t2.micro"
   vpc_security_group_ids = ["sg-0149e76eef2a1cd6a"]
   tags = {

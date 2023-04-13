@@ -46,3 +46,22 @@ variable "sample4" {
 output "types" {
   value = "variable sample2 is: ${var.sample2}, first value in list is ${var.sample3[0]}, Boolean value of map is ${var.sample4["boolean"]}"
 }
+
+
+variable "course" {
+  default = [
+    {
+      course_name   = "AWS"
+      trainer_name  = "raju"
+    },
+    {
+      course_name   = "DEVOPS"
+      trainer_name  = "peter"
+    }
+  ]
+}
+
+
+output "course_names" {
+  value = var.course.*.course_name   #every course name in the variable course will be displayed as output
+}
