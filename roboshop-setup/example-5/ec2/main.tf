@@ -11,16 +11,10 @@ resource "aws_instance" "ec2" {
   tags = {
     Name = var.component
   }
-}
-
-resource "aws_route53_record" "frontend" {
-  zone_id = "Z10378632KDOC11M5RXOI"
-  name    = "${var.component}-dev.devopspract.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.ec2.private_ip]
-}
-
-variable "component" {}
+}variable "component" {}
 variable "instance_type" {}
 variable "sg_id" {}
+
+output "private_ip" {
+  value = aws_instance.ec2.private_ip
+}

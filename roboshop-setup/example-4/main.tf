@@ -3,6 +3,12 @@ module "ec2" {
   source        = "./ec2"
   component     = each.value["name"]
   instance_type = each.value["type"]
+  sg_id         = module.sg.sg_id
+}
+
+#source is taken from
+module "sg" {
+  source = "./sg"
 }
 
 variable "instances" {
