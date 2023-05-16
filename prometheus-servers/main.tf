@@ -20,7 +20,7 @@ resource "aws_ec2_tag" "node1" {
 resource "aws_spot_instance_request" "node2" {
   ami                     = "ami-04d9ca43b6449e12a"
   vpc_security_group_ids  = ["sg-0149e76eef2a1cd6a"]
-  instance_type           = "t2.micro"
+  instance_type           = "t3.micro"
   wait_for_fulfillment    = true
 
   tags = {
